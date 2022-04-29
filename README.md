@@ -1,2 +1,3 @@
 # jupyter_notebook_for_docker
-一个jupyter notebook的docker镜像
+
+此文件是构建docker镜像的Dockerfile文件

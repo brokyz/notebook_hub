@@ -1,0 +1,70 @@
+/* Body */
+/* #notebook-container {
+    width: 90%
+} */
+
+/* Markdown */
+div#notebook {
+    font-family: san francisco, "PingFangSC-Medium", "Microsoft YaHei";
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+/* Markdown - h2 */
+div#notebook h2 {
+    color: #007aff;
+}
+
+/* Markdown - quote */
+div#notebook blockquote{
+    background-color: #f8f8f8;
+    color: #505050;
+    padding: 8.5px;
+    margin: 0.5em -0.5em 0.5em -0.4em;
+}
+
+/* Markdown - code in paragraph */
+div#notebook p code, div#notebook li code {
+    font-family: Consolas, "PingFangSC-Medium", "Microsoft YaHei";
+    font-size: 1em !important;
+    color: #111111;
+    border: 0.5px solid #cfcfcf;
+    border-radius: 2px;
+    background-color: #f7f7f7;
+    padding: .1em .2em;
+    margin: 0px 2px;
+}
+
+/* Markdown - code */
+div.text_cell_render pre {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+    line-height: 1.21429em;
+    padding: 8.5px;
+    margin: 0.5em -0.5em 0.5em -0.4em;
+}
+div.text_cell_render code {
+    background: #f7f7f7;
+}
+
+/* Code */
+div.CodeMirror-code {
+    font-family: Consolas, "PingFangSC-Medium", "Microsoft YaHei";
+    font-size: 11pt;
+    line-height: 140%;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+/* Code - output */
+div.output pre {
+    font-family: Consolas, "PingFangSC-Medium", "Microsoft YaHei";
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+/* Code - comment */
+span.cm-comment {
+    font-family: san francisco, "PingFangSC-Medium", "Microsoft YaHei" !important;
+    font-style: normal !important;
+}

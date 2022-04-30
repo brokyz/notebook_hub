@@ -4,7 +4,7 @@ ENV LANG=zh_CN.UTF8
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apt install wget vim python3 pip -y
+RUN apt update && apt install wget vim python3 pip -y
 
 RUN pip install jupyter notebook
 

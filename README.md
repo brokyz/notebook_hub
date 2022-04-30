@@ -20,7 +20,7 @@ dockerhub项目地址：https://registry.hub.docker.com/r/brokyz/notebook_hub
 
 - 为jupyter notebook整合了python3和R的内核支持。
 
-## 搭建
+## 下载镜像并搭建（推荐）
 
 **拉取镜像**
 
@@ -67,6 +67,16 @@ docker restart notebook_hub
 ```
 
 之后仅需要通过 ip:8887 就可以访问了
+
+## 使用Dockerfile搭建
+
+**下载相关Dockerfile**
+
+```
+mkdir build_notebook && cd build_notebook && wget https://raw.githubusercontent.com/brokyz/jupyter_notebook_for_docker/main/notebook_hub/Dockerfile && docker build -t brokyz/notebook_hub:latest .
+```
+
+
 
 ## 使用
 

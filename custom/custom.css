@@ -15,6 +15,17 @@ div#notebook h2 {
     color: #007aff;
 }
 
+div#notebook h3 {
+    color: #007aff;
+}
+
+div#notebook h4 {
+    color: #007aff;
+}
+div#notebook h5 {
+    color: #007aff;
+}
+
 /* Markdown - quote */
 div#notebook blockquote{
     background-color: #f8f8f8;
@@ -51,8 +62,8 @@ div.text_cell_render code {
 /* Code */
 div.CodeMirror-code {
     font-family: Consolas, "PingFangSC-Medium", "Microsoft YaHei";
-    font-size: 11pt;
-    line-height: 140%;
+    font-size: 13pt;
+    line-height: 145%;
     -webkit-font-smoothing: antialiased !important;
 }
 

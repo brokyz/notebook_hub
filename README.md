@@ -73,10 +73,8 @@ docker restart notebook_hub
 **下载相关Dockerfile**
 
 ```
-mkdir build_notebook && cd build_notebook && wget https://raw.githubusercontent.com/brokyz/jupyter_notebook_for_docker/main/notebook_hub/Dockerfile && docker build -t brokyz/notebook_hub:latest .
+rm -rf build_notebook && mkdir build_notebook && cd build_notebook && wget https://raw.githubusercontent.com/brokyz/jupyter_notebook_for_docker/main/notebook_hub/Dockerfile && docker build -t brokyz/notebook_hub:latest .
 ```
-
-
 
 ## 使用
 

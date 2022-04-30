@@ -1,3 +1,3 @@
 #!/bin/bash
-cat /root/info.txt
+cat /root/notebook_hub_info.txt
 jupyter notebook --allow-root

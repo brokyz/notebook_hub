@@ -16,7 +16,7 @@ RUN jupyter notebook --generate-config
 
 RUN rm -rf /root/.jupyter/jupyter_notebook_config.py
 RUN wget https://raw.githubusercontent.com/brokyz/jupyter_notebook_for_docker/main/config/jupyter_notebook_config.py && mv jupyter_notebook_config.py /root/.jupyter/
-RUN wget https://github.com/brokyz/jupyter_notebook_for_docker/blob/main/config/custom.css && mkdir /root/.jupyter/custom && mv custom.css /root/.jupyter/custom/
+RUN wget https://raw.githubusercontent.com/brokyz/jupyter_notebook_for_docker/main/config/custom.css && mkdir /root/.jupyter/custom && mv custom.css /root/.jupyter/custom/
 RUN wget https://github.com/brokyz/jupyter_notebook_for_docker/raw/main/simhei/SimHei.ttf && mkdir /usr/share/fonts/simhei && mv SimHei.ttf /usr/share/fonts/simhei/
 RUN wget https://raw.githubusercontent.com/brokyz/jupyter_notebook_for_docker/main/README.ipynb && mv README.ipynb /root/notebook/
 

@@ -29,7 +29,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && mv /root/tmp_config/start_notebook.sh /root/ \
     && chmod +x /root/start_notebook.sh \
     && mv /root/tmp_config/notebook_hub_info.txt /root/ \
-    && rm -rf /root/tmp_config
+    && rm -rf /root/tmp_config \
+    && rm -rf /usr/bin/sh && ln -s /usr/bin/bash /usr/bin/sh
 
 WORKDIR /root/notebook
 CMD ["sh","/root/start_notebook.sh"]

@@ -26,10 +26,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && mv /root/tmp_config/custom.css /root/.jupyter/custom/ \
     && mkdir /usr/share/fonts/simhei && mv /root/tmp_config/SimHei.ttf /usr/share/fonts/simhei/ \
     && mv /root/tmp_config/README.ipynb /root/notebook/ \
-    && apt install r-base -y \
-    && Rscript -e "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))" \
-    && Rscript -e "install.packages('IRkernel')" \
-    && Rscript -e "IRkernel::installspec(user=FALSE)" \
     && mv /root/tmp_config/start_notebook.sh /root/ \
     && chmod +x /root/start_notebook.sh \
     && mv /root/tmp_config/notebook_hub_info.txt /root/ \

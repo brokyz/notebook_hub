@@ -1,12 +1,18 @@
-# jupyter_notebook_for_docker
+# notebook_hub
 
 由于作者不习惯官方镜像jupyterlab的使用，所以基于ubuntu的基础镜像制作了这个jupyter notebook的docker镜像。
 
 该镜像整合了python3，R语言，Nbextensions等插件并对jupyter notebook进行了优化处理。
 
-github项目地址：https://github.com/brokyz/jupyter_notebook_for_docker
+github项目地址：https://github.com/brokyz/notebook_hub
 
-dockerhub项目地址：https://registry.hub.docker.com/r/brokyz/notebook_hub
+github网络访问有问题可以移步：https://e.coding.net/brokyz/projects/notebook_hub.git
+
+dockerhub项目地址：
+
+​	python3+R语言版本 ：https://registry.hub.docker.com/r/brokyz/notebook_hub
+
+​	python3版本：https://github.com/brokyz/notebook_py
 
 ## 优化内容
 
@@ -19,6 +25,8 @@ dockerhub项目地址：https://registry.hub.docker.com/r/brokyz/notebook_hub
 - 为jupyter notebook添加了Nbextensions功能增强插件。
 
 - 为jupyter notebook整合了python3和R的内核支持。
+
+- 优化终端对中文字体的显示。
 
 ## 下载镜像并搭建（推荐）
 

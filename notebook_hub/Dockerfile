@@ -1,35 +1,39 @@
+# 使用ubuntu作为基础镜像
 FROM ubuntu
 
-ENV LANG=zh_CN.UTF8
+# 设置中文显示支持
+ENV LANG=C.UTF-8
+# 设置时区
 ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apt update && apt install wget vim python3 pip -y
-
-RUN pip install jupyter notebook
-
-RUN pip install jupyter_contrib_nbextensions jupyter_nbextensions_configurator
-RUN jupyter contrib nbextension install
-
-RUN mkdir /root/notebook
-RUN jupyter notebook --generate-config
-
-RUN rm -rf /root/.jupyter/jupyter_notebook_config.py
-RUN wget https://raw.githubusercontent.com/brokyz/jupyter_notebook_for_docker/main/config/jupyter_notebook_config.py && mv jupyter_notebook_config.py /root/.jupyter/
-RUN wget https://raw.githubusercontent.com/brokyz/jupyter_notebook_for_docker/main/config/custom.css && mkdir /root/.jupyter/custom && mv custom.css /root/.jupyter/custom/
-RUN wget https://github.com/brokyz/jupyter_notebook_for_docker/raw/main/simhei/SimHei.ttf && mkdir /usr/share/fonts/simhei && mv SimHei.ttf /usr/share/fonts/simhei/
-RUN wget https://raw.githubusercontent.com/brokyz/jupyter_notebook_for_docker/main/README.ipynb && mv README.ipynb /root/notebook/
-
-RUN apt install r-base -y
-RUN Rscript -e "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))"
-RUN Rscript -e "install.packages('IRkernel')"
-RUN Rscript -e "IRkernel::installspec(user=FALSE)"
+# 从notebook_hub获取相关配置文件
+COPY https://raw.githubusercontent.com/brokyz/notebook-hub/main/config/jupyter_notebook_config.py /root/tmp_config/
+COPY https://raw.githubusercontent.com/brokyz/notebook-hub/main/config/custom.css /root/tmp_config/
+COPY https://github.com/brokyz/notebook-hub/raw/main/simhei/SimHei.ttf /root/tmp_config/
+COPY https://raw.githubusercontent.com/brokyz/notebook-hub/main/README.ipynb /root/tmp_config/
+COPY https://raw.githubusercontent.com/brokyz/notebook-hub/main/config/start_notebook.sh /root/tmp_config/
+COPY https://raw.githubusercontent.com/brokyz/notebook-hub/main/config/notebook_hub_info.txt /root/tmp_config/
 
 
-RUN wget https://raw.githubusercontent.com/brokyz/jupyter_notebook_for_docker/main/config/start_notebook.sh && mv start_notebook.sh /root/
-RUN chmod +x /root/start_notebook.sh
-
-RUN wget https://raw.githubusercontent.com/brokyz/jupyter_notebook_for_docker/main/config/notebook_hub_info.txt && mv notebook_hub_info.txt /root/
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
+    && apt update && apt install python3 pip -y \
+    && pip install jupyter notebook jupyter_contrib_nbextensions jupyter_nbextensions_configurator\
+    && jupyter contrib nbextension install \
+    && mkdir /root/notebook \
+    && jupyter notebook --generate-config \
+    && rm -rf /root/.jupyter/jupyter_notebook_config.py \
+    && mv /root/tmp_config/jupyter_notebook_config.py /root/.jupyter/ \
+    && mv /root/tmp_config/custom.css /root/.jupyter/custom/ \
+    && mkdir /usr/share/fonts/simhei && mv /root/tmp_config/SimHei.ttf /usr/share/fonts/simhei/ \
+    && mv /root/tmp_config/README.ipynb /root/notebook/ \
+    && apt install r-base -y \
+    && Rscript -e "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))" \
+    && Rscript -e "install.packages('IRkernel')" \
+    && Rscript -e "IRkernel::installspec(user=FALSE)" \
+    && mv /root/tmp_config/start_notebook.sh /root/ \
+    && chmod +x /root/start_notebook.sh \
+    && mv /root/tmp_config/notebook_hub_info.txt /root/ \
+    && rm -rf /root/tmp_config
 
 WORKDIR /root/notebook
 CMD ["sh","/root/start_notebook.sh"]

@@ -23,7 +23,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && jupyter notebook --generate-config \
     && rm -rf /root/.jupyter/jupyter_notebook_config.py \
     && mv /root/tmp_config/jupyter_notebook_config.py /root/.jupyter/ \
-    && mv /root/tmp_config/custom.css /root/.jupyter/custom/ \
+    && mkdir /root/.jupyter/custom && mv /root/tmp_config/custom.css /root/.jupyter/custom/ \
     && mkdir /usr/share/fonts/simhei && mv /root/tmp_config/SimHei.ttf /usr/share/fonts/simhei/ \
     && mv /root/tmp_config/README.ipynb /root/notebook/ \
     && apt install r-base -y \

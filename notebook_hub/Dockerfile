@@ -7,12 +7,12 @@ ENV LANG=C.UTF-8
 ENV TZ=Asia/Shanghai
 
 # 从notebook_hub获取相关配置文件
-COPY https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/jupyter_notebook_config.py /root/tmp_config/
-COPY https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/custom.css /root/tmp_config/
-COPY https://github.com/brokyz/notebook_hub/raw/main/simhei/SimHei.ttf /root/tmp_config/
-COPY https://raw.githubusercontent.com/brokyz/notebook_hub/main/README.ipynb /root/tmp_config/
-COPY https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/start_notebook.sh /root/tmp_config/
-COPY https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/notebook_hub_info.txt /root/tmp_config/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/jupyter_notebook_config.py /root/tmp_config/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/custom.css /root/tmp_config/
+ADD https://github.com/brokyz/notebook_hub/raw/main/simhei/SimHei.ttf /root/tmp_config/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/README.ipynb /root/tmp_config/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/start_notebook.sh /root/tmp_config/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/notebook_hub_info.txt /root/tmp_config/
 
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \

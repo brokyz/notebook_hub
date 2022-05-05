@@ -15,7 +15,7 @@ ADD https://github.com/brokyz/notebook_hub/raw/main/simhei/SimHei.ttf /root/conf
 
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
-    && apt update && apt install python3 pip git -y \
+    && apt update && apt install python3 pip git r-base -y \
     && pip install jupyterlab jupyterlab-language-pack-zh-CN jupyterlab-git jupyterlab-github jupyterlab-drawio jupyterlab-code-formatter black isort jupyterlab-lsp 'python-lsp-server[all]'\
     # && rm -rf /usr/bin/sh && ln -s /bin/bash /usr/bin/sh \
     && jupyter lab --generate-config && jupyter notebook --generate-config \

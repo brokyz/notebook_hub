@@ -24,6 +24,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && mv /root/config/jupyter_lab_config.py /root/.jupyter/ && mv /root/config/jupyter_notebook_config.py /root/.jupyter/ && mv /root/config/custom.css /root/.jupyter/custom/ \
     && mv /root/config/init.sh /root/
     && chmod +x /root/init.sh
+    && rm -rf /root/config
 
 WORKDIR /root/notebook
 CMD ["sh","/root/init.sh"]

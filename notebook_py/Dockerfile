@@ -8,7 +8,7 @@ ENV TZ=Asia/Shanghai
 ENV hostname=jupyter
 
 ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/jupyter_notebook_config.py /root/config
-ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/jupyter_py_config.py /root/config
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/jupyter_lab_config.py /root/config
 ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/custom.css /root/config
 ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/init.sh /root/config
 

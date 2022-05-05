@@ -7,12 +7,23 @@ ENV LANG=C.UTF-8
 ENV TZ=Asia/Shanghai
 ENV hostname=jupyter
 
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/jupyter_notebook_config.py /root/config
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/jupyter_py_config.py /root/config
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/custom.css /root/config
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/init.sh /root/config
+
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && apt update && apt install python3 pip -y \
     && pip install jupyterlab jupyter_contrib_nbextensions jupyter_nbextensions_configurator\
     && jupyter contrib nbextension install \
-    && rm -rf /usr/bin/sh && ln -s /usr/bin/bash /usr/bin/sh
+    && rm -rf /usr/bin/sh && ln -s /usr/bin/bash /usr/bin/sh \
+    && jupyter lab --generate-config && jupyter notebook --generate-config \
+    && mkdir /root/notebook && mkdir /root/.jupyter/custom \
+    && rm -rf /root/.jupyter/jupyter_notebook_config.py && rm -rf /root/.jupyter/jupyter_lab_config.py \
+    && mv /root/config/jupyter_lab_config.py /root/.jupyter/ && mv /root/config/jupyter_notebook_config.py /root/.jupyter/ && mv /root/config/custom.css /root/.jupyter/custom/ \
+    && mv /root/config/init.sh /root/
+    && chmod +x /root/init.sh
 
 WORKDIR /root/notebook
-CMD ["sh","/root/start_notebook.sh"]
+CMD ["sh","/root/init.sh"]

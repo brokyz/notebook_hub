@@ -1,7 +1,6 @@
 # 使用ubuntu作为基础镜像
 FROM ubuntu
 
-ENV HOSTNAME=notebook_hub
 # 设置中文显示支持
 ENV LANG=C.UTF-8
 # 设置时区

@@ -21,15 +21,16 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && jupyter lab --generate-config && jupyter notebook --generate-config \
     && mkdir /root/notebook && mkdir /root/.jupyter/custom \
     && rm -rf /root/.jupyter/jupyter_notebook_config.py && rm -rf /root/.jupyter/jupyter_lab_config.py \
-    && mv /root/config/jupyter_lab_config.py /root/.jupyter/ && mv /root/config/jupyter_notebook_config.py /root/.jupyter/ && mv /root/config/custom.css /root/.jupyter/custom/ \
+    && mv /root/config/jupyter_lab_config.py /root/.jupyter/ && mv /root/config/jupyter_notebook_config.py /root/.jupyter/ \
+    && mv /root/config/custom.css /root/.jupyter/custom/ \
     && mv /root/config/init.sh /root/ \
     && chmod +x /root/init.sh \
     && mkdir /usr/share/fonts/simhei && mv /root/config/SimHei.ttf /usr/share/fonts/simhei/ \
     && rm -rf /root/config \
-    && echo jupyter > /etc/hostname \
+    && echo "jupyter" > /etc/hostname \
     && Rscript -e "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest','languageserver'))" \
     && Rscript -e "install.packages('IRkernel')" \
-    && Rscript -e "IRkernel::installspec(user=FALSE)" \
+    && Rscript -e "IRkernel::installspec(user=FALSE)" 
 
 WORKDIR /root/notebook
 CMD ["sh","/root/init.sh"]

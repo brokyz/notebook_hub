@@ -1,6 +1,7 @@
 # 使用ubuntu作为基础镜像
 FROM ubuntu
 
+ENV HOSTNAME=notebook_hub
 # 设置中文显示支持
 ENV LANG=C.UTF-8
 # 设置时区
@@ -16,7 +17,7 @@ ADD https://github.com/brokyz/notebook_hub/raw/main/simhei/SimHei.ttf /root/conf
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && apt update && apt install python3 pip git -y \
-    && pip install jupyterlab jupyterlab-git jupyterlab-github jupyterlab-drawio jupyterlab-code-formatter black isort jupyterlab-lsp 'python-lsp-server[all]'\
+    && pip install jupyterlab jupyterlab-language-pack-zh-CN jupyterlab-git jupyterlab-github jupyterlab-drawio jupyterlab-code-formatter black isort jupyterlab-lsp 'python-lsp-server[all]'\
     # && rm -rf /usr/bin/sh && ln -s /bin/bash /usr/bin/sh \
     && jupyter lab --generate-config && jupyter notebook --generate-config \
     && mkdir /root/notebook && mkdir /root/.jupyter/custom \
@@ -27,7 +28,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && chmod +x /root/init.sh \
     && mkdir /usr/share/fonts/simhei && mv /root/config/SimHei.ttf /usr/share/fonts/simhei/ \
     && rm -rf /root/config \
-    && echo "jupyter" > /etc/hostname \
     && Rscript -e "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest','languageserver'))" \
     && Rscript -e "install.packages('IRkernel')" \
     && Rscript -e "IRkernel::installspec(user=FALSE)" 

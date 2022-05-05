@@ -4,6 +4,8 @@ c.ServerApp.ip='*'
 c.ServerApp.root_dir='/root/notebook'
 c.ServerApp.port = 8888
 c.ServerApp.open_browser= False
+c.ServerApp.terminado_settings = {'shell_command' : ['/bin/bash']}
+
 #---------------sd---------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
 #------------------------------------------------------------------------------

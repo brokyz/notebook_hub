@@ -4,6 +4,7 @@ c.NotebookApp.ip = "*"
 c.NotebookApp.open_browser = False
 c.NotebookApp.notebook_dir = "/root/notebook"
 c.NotebookApp.port = 8889
+c.NotebookApp.terminado_settings = {'shell_command' : ['/bin/bash']}
 
 
 #------------------------------------------------------------------------------

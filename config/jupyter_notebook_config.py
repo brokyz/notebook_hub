@@ -3,7 +3,7 @@
 c.NotebookApp.ip = "*"
 c.NotebookApp.open_browser = False
 c.NotebookApp.notebook_dir = "/root/notebook"
-c.NotebookApp.port = 8888
+c.NotebookApp.port = 8889
 
 
 #------------------------------------------------------------------------------

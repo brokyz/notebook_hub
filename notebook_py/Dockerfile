@@ -1,17 +1,18 @@
-# 使用ubuntu作为基础镜像
-FROM ubuntu
+# Use the base image ubuntu 22.04.
+# https://hub.docker.com/_/ubuntu/?tab=tags&name=22.04
+ARG ROOT_CONTAINER=ubuntu:22.04
 
-# 设置中文显示支持
+FROM $ROOT_CONTAINER
+
+# Enable bash display Chinese.
 ENV LANG=C.UTF-8
-# 设置时区
-ENV TZ=Asia/Shanghai
 
-
-ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/jupyter_notebook_config.py /root/config/
-ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/jupyter_lab_config.py /root/config/
-ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/custom.css /root/config/
-ADD https://raw.githubusercontent.com/brokyz/notebook_hub/main/config/init.sh /root/config/
-ADD https://github.com/brokyz/notebook_hub/raw/main/simhei/SimHei.ttf /root/config/
+# Add needed optimized files.
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/jupyter_notebook_config.py /root/config/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/jupyter_lab_config.py /root/config/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/custom.css /root/config/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/init.sh /root/config/
+ADD https://github.com/brokyz/notebook_hub/raw/notebook/config/simhei/SimHei.ttf /root/config/
 
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \

@@ -1,11 +1,11 @@
 # Use the base image ubuntu 22.04.
 # https://hub.docker.com/_/ubuntu/?tab=tags&name=22.04
 ARG ROOT_CONTAINER=ubuntu:22.04
+FROM $ROOT_CONTAINER
+
 ARG NB_USER="notebook"
 ARG NB_UID="1000"
 ARG NB_GID="100"
-
-FROM $ROOT_CONTAINER
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 

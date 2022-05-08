@@ -44,11 +44,13 @@ RUN sudo pip install \
     jupyter notebook --generate-config && \
     mkdir /home/${NB_USER}/projects && mkdir /home/${NB_USER}/.jupyter/custom && \
     rm -rf /home/${NB_USER}/.jupyter/jupyter_notebook_config.py && \
-    sudo chmod +x /home/${NB_USER}/init.sh
+    sudo chmod +x /usr/local/bin/start-notebook.sh && sudo chown ${NB_USER}:${NB_USER} /usr/local/bin/start-notebook.sh
 
 ADD https://github.com/brokyz/notebook_hub/raw/notebook/config/SimHei.ttf /usr/share/fonts/
 ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/jupyter_notebook_config.py /home/${NB_USER}/.jupyter/
 ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/custom.css /home/${NB_USER}/.jupyter/custom/
+
+RUN sudo chown ${NB_USER}:${NB_USER} /home/${NB_USER}/.jupyter/jupyter_notebook_config.py
 
 
 WORKDIR /home/${NB_USER}/projects

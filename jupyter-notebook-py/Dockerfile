@@ -36,11 +36,11 @@ WORKDIR /home/${NB_USER}
 
 ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/init.sh /home/${NB_USER}/
 
-RUN pip install \
+RUN sudo pip install \
     jupyter notebook \
     jupyter_contrib_nbextensions \
     jupyter_nbextensions_configurator && \
-    jupyter contrib nbextension install && \
+    sudo jupyter contrib nbextension install && \
     jupyter notebook --generate-config && \
     mkdir /home/${NB_USER}/projects && mkdir /home/${NB_USER}/.jupyter/custom && \
     rm -rf /home/${NB_USER}/.jupyter/jupyter_notebook_config.py && \

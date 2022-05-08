@@ -19,22 +19,22 @@ RUN apt update --yes && apt upgrade --yes && \
     sudo
 
 ENV SHELL=/bin/bash \
-    NB_USER="${NB_USER}" \
-    NB_UID=${NB_UID} \
-    NB_GID=${NB_GID} \
+    NB_USER=$NB_USER \
+    NB_UID=$NB_UID \
+    NB_GID=$NB_GID \
     LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
     LANGUAGE=C.UTF-8
-ENV HOME="/home/${NB_USER}"
+ENV HOME="/home/$NB_USER"
 
-RUN useradd -l -m -s /bin/bash "${NB_USER}" && \
-    sed -i "/%sudo   ALL=(ALL:ALL) ALL/a\${NB_USER} ALL=(ALL:ALL) NOPASSWD:ALL" /etc/sudoers
+RUN useradd -ms /bin/bash $NB_USER && \
+    sed -i "/%sudo   ALL=(ALL:ALL) ALL/a\$NB_USER ALL=(ALL:ALL) NOPASSWD:ALL" /etc/sudoers
 
-USER ${NB_USER}
+USER $NB_USER
 
-WORKDIR /home/${NB_USER}
+WORKDIR /home/$NB_USER
 
-ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/init.sh /home/${NB_USER}/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/init.sh /home/$NB_USER/
 
 RUN pip install \
     jupyter notebook \
@@ -42,15 +42,15 @@ RUN pip install \
     jupyter_nbextensions_configurator && \
     jupyter contrib nbextension install && \
     jupyter notebook --generate-config && \
-    mkdir /home/${NB_USER}/projects && mkdir /home/${NB_USER}/.jupyter/custom && \
-    rm -rf /home/${NB_USER}/.jupyter/jupyter_notebook_config.py && \
-    sudo chmod +x /home/${NB_USER}/init.sh
+    mkdir /home/$NB_USER/projects && mkdir /home/$NB_USER/.jupyter/custom && \
+    rm -rf /home/$NB_USER/.jupyter/jupyter_notebook_config.py && \
+    sudo chmod +x /home/$NB_USER/init.sh
 
 ADD https://github.com/brokyz/notebook_hub/raw/notebook/config/SimHei.ttf /usr/share/fonts/
-ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/jupyter_notebook_config.py /home/${NB_USER}/.jupyter/
-ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/custom.css /home/${NB_USER}/.jupyter/custom/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/jupyter_notebook_config.py /home/$NB_USER/.jupyter/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/custom.css /home/$NB_USER/.jupyter/custom/
 
 
-WORKDIR /home/${NB_USER}/projects
+WORKDIR /home/$NB_USER/projects
 
-CMD ["sh","/home/${NB_USER}/init.sh"]
+CMD ["sh","/home/$NB_USER/init.sh"]

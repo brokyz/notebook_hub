@@ -28,7 +28,7 @@ ENV SHELL=/bin/bash \
 ENV HOME="/home/${NB_USER}"
 
 RUN useradd -ms /bin/bash ${NB_USER} && \
-    sed -i "/%sudo/a\${NB_USER} ALL=(ALL:ALL) NOPASSWD:ALL" /etc/sudoers
+    sed -i '/%sudo/a\'$NB_USER' ALL=(ALL:ALL) NOPASSWD:ALL' /etc/sudoers
 
 USER ${NB_USER}
 

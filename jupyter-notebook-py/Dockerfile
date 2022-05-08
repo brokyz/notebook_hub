@@ -28,13 +28,13 @@ ENV SHELL=/bin/bash \
 ENV HOME="/home/${NB_USER}"
 
 RUN useradd -ms /bin/bash ${NB_USER} && \
-    sed -i '/%sudo/a\'$NB_USER' ALL=(ALL:ALL) NOPASSWD:ALL' /etc/sudoers
+    sed -i '/%sudo/a\ '$NB_USER' ALL=(ALL:ALL) NOPASSWD:ALL' /etc/sudoers
 
 USER ${NB_USER}
 
 WORKDIR /home/${NB_USER}
 
-ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/init.sh /home/${NB_USER}/
+ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/start-notebook.sh /usr/local/bin/
 
 RUN sudo pip install \
     jupyter notebook \
@@ -53,4 +53,4 @@ ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/custom
 
 WORKDIR /home/${NB_USER}/projects
 
-CMD ["sh","/home/${NB_USER}/init.sh"]
+CMD ["start-notebook.sh"]

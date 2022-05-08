@@ -1,2 +1,2 @@
 #!/bin/bash
-jupyter lab --allow-root
+jupyter notebook --allow-root

@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------------------------
-Project：notebook_hub
-Version：v6.2
-Auther：brokyz
-Github：https://github.com/brokyz/jupyter_notebook_for_docker
-Docker Hub：https://hub.docker.com/repository/docker/brokyz/notebook_hub
-E-Mail：boqiangz@foxmail.com
--------------------------------------------------------------------------------------------------

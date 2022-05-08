@@ -27,10 +27,10 @@ ENV SHELL=/bin/bash \
     LANGUAGE=C.UTF-8
 ENV HOME="/home/${NB_USER}"
 
-RUN useradd -l -m -s /bin/bash -N -u "${NB_UID}" "${NB_USER}" && \
+RUN useradd -l -m -s /bin/bash "${NB_USER}" && \
     sed -i "/%sudo   ALL=(ALL:ALL) ALL/a\${NB_USER} ALL=(ALL:ALL) NOPASSWD:ALL" /etc/sudoers
 
-USER ${NB_UID}
+USER ${NB_USER}
 
 WORKDIR /home/${NB_USER}
 
@@ -46,7 +46,7 @@ RUN pip install \
     rm -rf /home/${NB_USER}/.jupyter/jupyter_notebook_config.py && \
     sudo chmod +x /home/${NB_USER}/init.sh
 
-ADD https://github.com/brokyz/notebook_hub/raw/notebook/config/simhei/SimHei.ttf /usr/share/fonts/
+ADD https://github.com/brokyz/notebook_hub/raw/notebook/config/SimHei.ttf /usr/share/fonts/
 ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/jupyter_notebook_config.py /home/${NB_USER}/.jupyter/
 ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/custom.css /home/${NB_USER}/.jupyter/custom/
 

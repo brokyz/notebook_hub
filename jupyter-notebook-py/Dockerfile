@@ -51,6 +51,7 @@ ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/jupyte
 ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/custom.css /home/${NB_USER}/.jupyter/custom/
 
 RUN sudo chown ${NB_USER}:${NB_USER} /home/${NB_USER}/.jupyter/jupyter_notebook_config.py && \
+    sudo chown ${NB_USER}:${NB_USER} /home/${NB_USER}/.jupyter/custom/custom.css
     sed -i 's/${NB_USER}/'$NB_USER'/g' /home/${NB_USER}/.jupyter/jupyter_notebook_config.py
 
 

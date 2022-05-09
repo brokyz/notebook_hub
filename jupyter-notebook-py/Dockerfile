@@ -50,7 +50,8 @@ ADD https://github.com/brokyz/notebook_hub/raw/notebook/config/SimHei.ttf /usr/s
 ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/jupyter_notebook_config.py /home/${NB_USER}/.jupyter/
 ADD https://raw.githubusercontent.com/brokyz/notebook_hub/notebook/config/custom.css /home/${NB_USER}/.jupyter/custom/
 
-RUN sudo chown ${NB_USER}:${NB_USER} /home/${NB_USER}/.jupyter/jupyter_notebook_config.py
+RUN sudo chown ${NB_USER}:${NB_USER} /home/${NB_USER}/.jupyter/jupyter_notebook_config.py && \
+    sed -i 's/${NB_USER}/'$NB_USER'/g' /home/${NB_USER}/.jupyter/jupyter_notebook_config.py
 
 
 WORKDIR /home/${NB_USER}/projects
